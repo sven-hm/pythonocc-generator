@@ -1285,6 +1285,7 @@ class ModuleWrapper(object):
         module_headers += glob.glob('%s/%s.hxx' % (OCE_INCLUDE_DIR, self._module_name))
         module_headers += glob.glob('%s/%s_*.hxx' % (SMESH_INCLUDE_DIR, self._module_name))
         module_headers += glob.glob('%s/%s.hxx' % (SMESH_INCLUDE_DIR, self._module_name))
+        module_headers.sort()
         for module_header in filter_header_list(module_headers):
             if not os.path.basename(module_header) in HXX_TO_EXCLUDE:
                 h.write("#include<%s>\n" % os.path.basename(module_header))
@@ -1293,13 +1294,19 @@ class ModuleWrapper(object):
         # All those headers may not be necessary
         # but it's the only way to be sure we don't miss any
         for dep in PYTHON_MODULE_DEPENDENCY:
-            for header_basename in get_all_module_headers(dep):
+            all_module_headers = get_all_module_headers(dep)
+            all_module_headers.sort()
+            for header_basename in all_module_headers:
                 h.write("#include<%s>\n" % header_basename)
         for add_dep in self._additional_dependencies:
-            for header_basename in get_all_module_headers(add_dep):
+            all_module_headers = get_all_module_headers(add_dep)
+            all_module_headers.sort()
+            for header_basename in all_module_headers:
                 h.write("#include<%s>\n" % header_basename)
         h.write("%};\n")
-        for dep in PYTHON_MODULE_DEPENDENCY:
+        sorted_modules = PYTHON_MODULE_DEPENDENCY
+        sorted_modules.sort()
+        for dep in sorted_modules:
             if is_module(dep):
                 h.write("%%import %s.i\n" % dep)
 
