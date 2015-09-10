@@ -1162,7 +1162,7 @@ def is_module(module_name):
     'Standard' should return True
     'inj' should return False
     """
-    for mod in OCE_MODULES + SMESH_MODULES:
+    for mod in ALL_MODULES:
         if mod[0] == module_name:
             return True
     return False
@@ -1312,9 +1312,8 @@ class ModuleWrapper(object):
 
 
 def process_module(module_name):
-    all_modules = OCE_MODULES + SMESH_MODULES
     module_exist = False
-    for module in all_modules:
+    for module in ALL_MODULES:
         if module[0] == module_name:
             module_exist = True
             module_additionnal_dependencies = module[1]

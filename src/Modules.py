@@ -614,5 +614,7 @@ SMESH_MODULES = [
             'NETGENPlugin_NETGEN_2D_ONLY': 'CheckHypothesis'}),
            ]
 
+ALL_MODULES = OCE_MODULES + SMESH_MODULES
+
 if __name__ == '__main__':
     print(get_wrapped_modules_names())
