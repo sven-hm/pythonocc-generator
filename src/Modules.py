@@ -607,11 +607,7 @@ SMESH_MODULES = [
              'StdMeshers_NumberOfSegments': 'SetDistrType',
              'StdMeshers_ProjectionUtils': 'FindFaceAssociation'
              }),
-           ('NETGENPlugin', [], [],
-            {'NETGENPlugin_NETGEN_2D': 'CheckHypothesis',
-            'NETGENPlugin_NETGEN_2D3D': 'CheckHypothesis',
-            'NETGENPlugin_NETGEN_3D': 'CheckHypothesis',
-            'NETGENPlugin_NETGEN_2D_ONLY': 'CheckHypothesis'}),
+           ('NETGENPlugin', [], [])
            ]
 
 ALL_MODULES = OCE_MODULES + SMESH_MODULES

@@ -1281,10 +1281,9 @@ class ModuleWrapper(object):
         h = open(os.path.join(SWIG_OUTPUT_PATH, "%s_headers.i" % self._module_name), "w")
         h.write(get_license_header())
         h.write("%{\n")
+        #
         module_headers = glob.glob('%s/%s_*.hxx' % (OCE_INCLUDE_DIR, self._module_name))
         module_headers += glob.glob('%s/%s.hxx' % (OCE_INCLUDE_DIR, self._module_name))
-        module_headers += glob.glob('%s/%s_*.hxx' % (SMESH_INCLUDE_DIR, self._module_name))
-        module_headers += glob.glob('%s/%s.hxx' % (SMESH_INCLUDE_DIR, self._module_name))
         module_headers.sort()
         for module_header in filter_header_list(module_headers):
             if not os.path.basename(module_header) in HXX_TO_EXCLUDE:
@@ -1303,6 +1302,13 @@ class ModuleWrapper(object):
             all_module_headers.sort()
             for header_basename in all_module_headers:
                 h.write("#include<%s>\n" % header_basename)
+        # include smesh headers
+        module_headers = glob.glob('%s/%s_*.hxx' % (SMESH_INCLUDE_DIR, self._module_name))
+        module_headers += glob.glob('%s/%s.hxx' % (SMESH_INCLUDE_DIR, self._module_name))
+        module_headers.sort()
+        for module_header in filter_header_list(module_headers):
+            if not os.path.basename(module_header) in HXX_TO_EXCLUDE:
+                h.write("#include<%s>\n" % os.path.basename(module_header))
         h.write("%};\n")
         sorted_modules = PYTHON_MODULE_DEPENDENCY
         sorted_modules.sort()
