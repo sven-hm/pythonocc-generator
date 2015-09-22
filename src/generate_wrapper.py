@@ -32,11 +32,12 @@ __rootpath__ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path = [path_from_root('src', 'contrib', 'cppheaderparser')] + sys.path
 import CppHeaderParser
 
-all_toolkits = [TOOLKIT_Foundation,
-                TOOLKIT_Modeling,
-                TOOLKIT_Visualisation,
-                TOOLKIT_DataExchange,
-                TOOLKIT_OCAF,
+all_toolkits = [
+               # TOOLKIT_Foundation,
+               # TOOLKIT_Modeling,
+               # TOOLKIT_Visualisation,
+               # TOOLKIT_DataExchange,
+               # TOOLKIT_OCAF,
                 TOOLKIT_SMesh]
 TOOLKITS = {}
 for tk in all_toolkits:

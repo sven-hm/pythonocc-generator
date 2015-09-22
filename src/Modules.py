@@ -113,7 +113,7 @@ TOOLKIT_OCAF = {
             }
 
 TOOLKIT_SMesh = {
-            'SMESH': ['SMDSAbs', 'SMDS', 'SMESH', 'SMESHDS', 'StdMeshers', 'NETGENPlugin']
+            'SMESH': ['SMDSAbs', 'SMDS', 'SMESH', 'SMESHDS', 'StdMeshers', 'NETGENPlugin', 'TetgenPlugin']
             }
 
 # List of modules to export
@@ -607,7 +607,8 @@ SMESH_MODULES = [
              'StdMeshers_NumberOfSegments': 'SetDistrType',
              'StdMeshers_ProjectionUtils': 'FindFaceAssociation'
              }),
-           ('NETGENPlugin', [], [])
+           ('NETGENPlugin', [], []),
+           ('TetgenPlugin', [], [])
            ]
 
 ALL_MODULES = OCE_MODULES + SMESH_MODULES
